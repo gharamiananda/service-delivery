@@ -1,6 +1,16 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
+import calculator from '../../img/icon/calculator-symbols.png';
+import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase/firebase.init';
+import userimg from '../../img/logo/user.png';
 
 const Header = () => {
+    const [user, loading, error] = useAuthState(auth);
+    console.log(user);
+    const logout = () => {
+        signOut(auth);
+    };
     return (
         <header>
             <div className="header-top-wrap purple-bg d-none d-md-block">
@@ -48,42 +58,36 @@ const Header = () => {
                                     <nav id="mobile-menu">
                                         <ul>
                                             <li className="active"><a href="index.html">Home</a>
-                                                <ul className="submenu">
-                                                    <li className="active"><a href="index.html">Home One</a></li>
-                                                    <li><a href="index-2.html">Home Two</a></li>
-                                                    <li><a href="index-3.html">Home Three</a></li>
-                                                </ul>
+
                                             </li>
-                                            <li><a href="about-us.html">Company</a></li>
-                                            <li><a href="tracking.html">Tracking</a></li>
-                                            <li><a href="#">Pages</a>
-                                                <ul className="submenu">
-                                                    <li><a href="#">Services</a>
-                                                        <ul className="submenu">
-                                                            <li><a href="service-air.html">Services Air</a></li>
-                                                            <li><a href="service-Railway.html">Services Railway</a></li>
-                                                            <li><a href="service-door-to-door.html">Services Door to Door</a></li>
-                                                            <li><a href="service-warehouse.html">Services warehouse</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="pricing.html">Pricing Plan</a></li>
-                                                </ul>
+                                            <li><a href="about-us.html">Services</a></li>
+                                            <li><a href="tracking.html">Blog</a></li>
+
+                                            <li><a href="#">Portfolio</a>
+
                                             </li>
-                                            <li><a href="#">News &amp; Media</a>
-                                                <ul className="submenu">
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="blog-classic.html">Blog Classic</a></li>
-                                                    <li><a href="blog-with-sidebar.html">Blog With Sidebar</a></li>
-                                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="support.html">Support</a></li>
+
                                         </ul>
                                     </nav>
                                 </div>
 
                                 <div className="header-btn">
-                                    <a href="#" className="btn" data-toggle="modal" data-target="#exampleModalLong"><img src="img/icon/calculator-symbols.png" alt="icon" />Login/Register</a>
+                                    {!user ? <Link to="/login" className="btn">
+                                        <img src={calculator} alt="icon" />Login/Register
+                                    </Link> : <>
+                                        <li className="nav-item dropdown">
+                                            <img src={userimg} className="usericon w-75" alt="icon" role="button" data-toggle="dropdown" aria-expanded="false" />
+                                            <ul className="dropdown-menu">
+
+                                                <li><button className="dropdown-item"
+                                                    onClick={logout}
+                                                >Logout</button></li>
+                                                <li><hr className="dropdown-divider" /></li>
+                                                <li><a className="dropdown-item" href="#">{user?.displayName}</a></li>
+                                            </ul>
+                                        </li>
+
+                                    </>}
                                 </div>
 
                             </div>

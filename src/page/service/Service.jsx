@@ -9,7 +9,9 @@ const Service = ({ service }) => {
 
 
     const viewDetails = (title) => {
-        navigate(`/services/${title}`, { state: service })
+
+        const setUrl = title.toLowerCase().split(" ").join("-")
+        navigate(`/services/${setUrl}`, { state: service })
     }
 
 

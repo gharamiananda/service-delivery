@@ -7,6 +7,8 @@ import Preloader from './components/preloader/Preloader';
 import { Routes, Route } from 'react-router-dom';
 import Services from './page/services/Services';
 import ServiceDetail from './page/serviceDetail/ServiceDetail';
+import Login from './page/login/Login';
+import Register from './page/register/Register';
 function App() {
   return (
     <>
@@ -17,6 +19,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/services/:id" element={<ServiceDetail />} />
 
 
