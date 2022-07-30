@@ -1,11 +1,19 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase/firebase.init';
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import Loading from '../../components/loading/Loading';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    let navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+
+    const datas = location?.state?.state;
+
     const [
         signInWithEmailAndPassword,
         user,
@@ -13,9 +21,24 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        signInWithEmailAndPassword(email, password)
+        try {
+            await signInWithEmailAndPassword(email, password)
+            navigate(from, { replace: true, state: datas });
+
+        } catch (error) {
+
+        }
+    }
+
+
+
+
+    let customError;
+
+    if (error) {
+        customError = error
     }
 
     return (
@@ -37,20 +60,22 @@ const Login = () => {
                                 <div className="row">
 
                                     <div className="col-md-6">
-                                        <input type="email"
+                                        <input type="email" required
                                             onChange={(e) => setEmail(e.target.value)}
                                             placeholder="Your E-mail *" />
                                     </div>
                                     <div className="col-md-6">
-                                        <input type="password"
+                                        <input type="password" required
                                             onChange={(e) => setPassword(e.target.value)}
                                             placeholder="Your Password *" />
                                     </div>
 
 
                                 </div>
-
-                                <button className="btn red-btn" type='submit'  > Register</button>
+                                {
+                                    customError && <p className='text-danger'>{customError?.message}</p>
+                                }
+                                <button className="btn red-btn" type='submit' disabled={loading && "true"} > Login {loading && <Loading />}  </button>
                             </form>
                         </div>
 

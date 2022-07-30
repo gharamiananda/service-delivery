@@ -1,13 +1,21 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 // import innerbanner from '../../../public/img/images/inner-banner.jpg';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase/firebase.init';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ServiceDetail = () => {
+    const [user, loading, error] = useAuthState(auth);
 
     const location = useLocation();
 
-    const { title, desc, price, id, img } = location?.state;
+    const datas = location?.state;
+    console.log(location?.state);
 
+    const handleBuy = () => {
+        toast(`Hello ${user?.displayName},Successfully Purchase your item `)
+    }
     return (
         <main>
             {/* breadcrumb-area */}
@@ -20,11 +28,11 @@ const ServiceDetail = () => {
                                     <ol className="breadcrumb">
                                         <li className="dots" />
                                         <li className="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li className="breadcrumb-item active" aria-current="page">{title}</li>
+                                        <li className="breadcrumb-item active" aria-current="page">{datas?.title}</li>
                                         <li className="dots2" />
                                     </ol>
                                 </nav>
-                                <h2>{title}</h2>
+                                <h2>{datas?.title}</h2>
                             </div>
                         </div>
                     </div>
@@ -40,7 +48,7 @@ const ServiceDetail = () => {
                                 <aside className="services-sidebar">
                                     <div className="services-widget mb-40">
                                         <div className="service-widget-title">
-                                            <h3>Service :{title}</h3>
+                                            <h3>Service :{datas?.title}</h3>
                                         </div>
                                         <div className="service-cat-list py-5">
 
@@ -49,24 +57,20 @@ const ServiceDetail = () => {
                                                 <div className="row justify-content-center">
                                                     <div className="col-lg-10">
                                                         <div className="support-form text-center">
-                                                            <form action="#">
-                                                                <div className="row">
-                                                                    <div className="col-md-6">
-                                                                        <input type="text" placeholder="First Name *" />
-                                                                    </div>
-                                                                    <div className="col-md-6">
-                                                                        <input type="text" placeholder="Last Name *" />
-                                                                    </div>
-                                                                    <div className="col-md-6">
-                                                                        <input type="email" placeholder="Your E-mail *" />
-                                                                    </div>
-                                                                    <div className="col-md-6">
-                                                                        <input type="email" placeholder="Phone" />
-                                                                    </div>
+
+                                                            <div className="row">
+                                                                <div className="col-md-12">
+                                                                    <input type="text" readOnly placeholder={user?.displayName} />
                                                                 </div>
-                                                                {/* <textarea name="message" id="message" column="2" placeholder="Message" defaultValue={""} /> */}
-                                                                <button className="btn red-btn">Buy Now</button>
-                                                            </form>
+
+
+                                                                <div className="col-md-12">
+                                                                    <input type="email" placeholder="Phone" />
+                                                                </div>
+                                                            </div>
+                                                            <textarea name="Address" id="message" column="2" placeholder="Your Address" defaultValue={""} />
+                                                            <button onClick={handleBuy} className="btn red-btn">Buy Now</button>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -87,10 +91,10 @@ const ServiceDetail = () => {
                             </div>
                             <div className="col-lg-7">
                                 <div className="services-details-content">
-                                    <h4>{title}</h4>
-                                    <p>{desc}</p>
+                                    <h4>{datas?.title}</h4>
+                                    <p>{datas?.desc}</p>
                                     <div className="services-details-img">
-                                        <img src={img} alt />
+                                        <img src={datas?.img} alt />
                                     </div>
 
                                     <div className="services-details-list">

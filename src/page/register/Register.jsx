@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+import Loading from '../../components/loading/Loading';
+import { ToastContainer, toast } from 'react-toastify';
 
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 
@@ -7,8 +10,13 @@ import auth from '../../firebase/firebase.init';
 const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [conpassword, setconPassword] = useState('');
     const [displayName, setDisplayName] = useState('');
     const [updateProfile, updating] = useUpdateProfile(auth);
+
+    let customError;
+    let customErrorTwo;
+    const navigate = useNavigate();
     const [
         createUserWithEmailAndPassword,
         user,
@@ -19,21 +27,38 @@ const Register = () => {
     const handleRegister = async (e) => {
 
         e.preventDefault();
+
+        if (password !== conpassword) {
+
+
+            toast("Did not match password and Confirm PAssword!")
+            return
+        }
+
+
         try {
             await createUserWithEmailAndPassword(email, password)
 
-            await updateProfile({ displayName });
+            await updateProfile({ displayName })
+                .then(() => {
+                    navigate("/")
+
+                })
         } catch (error) {
             console.log(error);
         }
 
 
 
+
     }
 
-    if (updating || loading) {
-        return <p>Loading....</p>
+
+    if (error) {
+        customError = error.message;
     }
+
+
     return (
         <div className="support-area support-bg pt-110 pb-120">
             <div className="container">
@@ -52,27 +77,35 @@ const Register = () => {
                             <form onSubmit={handleRegister}>
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <input type="text"
+                                        <input type="text" required
                                             onChange={(e) => setDisplayName(e.target.value)}
                                             placeholder="User Name *" />
                                     </div>
                                     <div className="col-md-6">
-                                        <input type="email"
+                                        <input type="email" required
                                             onChange={(e) => setEmail(e.target.value)}
                                             placeholder="Your E-mail *" />
                                     </div>
                                     <div className="col-md-6">
-                                        <input type="password"
+                                        <input type="password" required
                                             onChange={(e) => setPassword(e.target.value)}
                                             placeholder="Your Password *" />
                                     </div>
                                     <div className="col-md-6">
-                                        <input type="password" placeholder="Your Confirm Password *" />
+                                        <input type="password" required
+                                            onChange={(e) => setconPassword(e.target.value)}
+                                            placeholder="Your Confirm Password *" />
                                     </div>
 
                                 </div>
 
-                                <button className="btn red-btn" type='submit'  > Register</button>
+
+                                <p className='text-danger'>{customErrorTwo}</p>
+
+                                {
+                                    customError && <p className='text-danger'>{customError}</p>
+                                }
+                                <button className="btn red-btn" type='submit' disabled={updating || loading && "true"} > Register{updating || loading && <Loading />}  </button>
                             </form>
                         </div>
 
