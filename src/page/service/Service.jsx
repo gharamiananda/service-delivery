@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from "react-router-dom"
 
 const Service = ({ service }) => {
-    const { id, title, price, desc } = service;
+    const { id, title, price, desc, img } = service;
     const des = desc.slice(0, 120);
 
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ const Service = ({ service }) => {
         <div className="col-lg-4 col-md-6">
             <div className="single-services mb-30">
                 <div className="services-thumb">
-                    <a href="#"><img src="img/images/services_img01.jpg" alt="img" /></a>
+                    <a href="#"><img src={img} className='w-100' alt="img" /></a>
                 </div>
                 <div className="services-content">
                     <div className="services-icon">

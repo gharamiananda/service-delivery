@@ -1,6 +1,9 @@
 import React from 'react';
 
 const Footer = () => {
+
+
+
     return (
         <footer>
             <div className="footer-wrap pt-190 pb-40" data-background="img/bg/footer_bg.jpg">
@@ -9,7 +12,9 @@ const Footer = () => {
                         <div className="col-xl-3 col-lg-4 col-md-6">
                             <div className="footer-widget mb-50">
                                 <div className="footer-logo mb-35">
-                                    <a href="index.html"><img src="img/logo/w_logo.png" alt="img" /></a>
+                                    <a href="">
+                                        <h2>Cargo Delivery</h2>
+                                    </a>
                                 </div>
                                 <div className="footer-text">
                                     <p>Orem Ipsum is simply dumm text the printing and types indstr sum has been the industry
@@ -37,7 +42,7 @@ const Footer = () => {
                                                 <a href="#"><img src="img/blog/f_rc_img01.jpg" alt="img" /></a>
                                             </div>
                                             <div className="f-rc-content">
-                                                <span>19 Jun, 2019</span>
+                                                <span>19 Jun, 2022</span>
                                                 <h5><a href="#">which the syste built and actually</a></h5>
                                             </div>
                                         </li>
@@ -46,7 +51,7 @@ const Footer = () => {
                                                 <a href="#"><img src="img/blog/f_rc_img02.jpg" alt="img" /></a>
                                             </div>
                                             <div className="f-rc-content">
-                                                <span>19 Jun, 2019</span>
+                                                <span>19 Jun, 2022</span>
                                                 <h5><a href="#">which the syste built and actually</a></h5>
                                             </div>
                                         </li>

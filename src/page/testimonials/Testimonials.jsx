@@ -39,31 +39,7 @@ const Testimonials = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="single-testimonial">
-                                    <div className="testimonial-cat mb-30">
-                                        <h5>Air Freight</h5>
-                                        <div className="testimonial-rating">
-                                            <i className="fas fa-star" />
-                                            <i className="fas fa-star" />
-                                            <i className="fas fa-star" />
-                                            <i className="fas fa-star" />
-                                            <i className="fas fa-star" />
-                                        </div>
-                                    </div>
-                                    <div className="testimonial-content mb-45">
-                                        <p>“ Express delivery is an innovative service is effective logistics solution for the delivery of small cargo. This
-                                            service is useful companied various effective logistics scala ”</p>
-                                    </div>
-                                    <div className="testimonial-avatar">
-                                        <div className="testi-avatar-img">
-                                            <img src="img/images/testi_avatar02.png" alt="img" />
-                                        </div>
-                                        <div className="testi-avatar-info">
-                                            <h6>Lanu Dexander</h6>
-                                            <span>Founder Cargo</span>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>

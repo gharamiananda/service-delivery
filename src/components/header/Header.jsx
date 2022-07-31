@@ -6,7 +6,7 @@ import auth from '../../firebase/firebase.init';
 import userimg from '../../img/logo/user.png';
 import { NavLink } from "react-router-dom";
 const Header = () => {
-    
+
     const [user, loading, error] = useAuthState(auth);
     console.log(user);
     const logout = () => {
@@ -20,9 +20,9 @@ const Header = () => {
                         <div className="col-xl-6 col-lg-7 col-md-6">
                             <div className="header-contact">
                                 <ul>
-                                    <li><i className="fas fa-headphones" />Call us +654 3048 9658</li>
-                                    <li><i className="far fa-envelope" />Startask@info.com</li>
-                                    <li><i className="fas fa-map-marker" />W84 wokin Street Park</li>
+                                    <li><i className="fas fa-headphones" />Call us +91 8420377092</li>
+                                    <li><i className="far fa-envelope" />anandagharami@gmail.com</li>
+                                    <li><i className="fas fa-map-marker" /> Kolkata, India</li>
                                 </ul>
                             </div>
                         </div>
@@ -44,13 +44,16 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
+
+
             </div>
             <div id="header-sticky" className="main-header">
                 <div className="container-fluid header-container-p">
                     <div className="row align-items-center">
                         <div className="col-lg-3 col-md-6">
                             <div className="logo">
-                                <a href="index.html"><img src="img/logo/logo.png" className="mobile-logo" alt="Logo" /></a>
+                                <a href="">
+                                    <h3>Cargo Delivery</h3></a>
                             </div>
                         </div>
                         <div className="col-lg-9 col-md-6 d-none d-md-block">
@@ -93,7 +96,28 @@ const Header = () => {
                             <div className="mobile-menu" />
                         </div>
                     </div>
+                    <nav class="navbar navbar-expand-lg bg-light">
+                        <div class="container-fluid">
+                            <a class="navbar-brand" href="#">
 
+
+                                <h3>Cargo Delivery</h3>
+
+                            </a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav">
+                                    <li className="active"><NavLink to="/">Home</NavLink></li>
+                                    <li  ><NavLink to="/services">Services</NavLink></li>
+                                    <li  ><NavLink to="/blog">Blog</NavLink></li>
+
+                                    <li  ><NavLink to="/portfolio">Portfolio</NavLink> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
 
                 </div>
             </div>

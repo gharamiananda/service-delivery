@@ -1,0 +1,14 @@
+[
+    {
+        "title": "1 Difference between authorization and authentication ?",
+        "desc": "authentication and authorization may sound alike, but each plays a different role in securing systems and data.Authentication and authorization are two vital information security processes that administrators use to protect systems and information. Authentication verifies the identity of a user or service, and authorization determines their access rights."
+    },
+    {
+        "title": "2 Why are you using firebase? What other options do you have to implement authentication?",
+        "desc": "Google Firebase offers many features that pitch it as the go-to backend development tool for web and mobile apps. It reduces development workload and time. And it's a perfect prototyping tool. Firebase is simple, lightweight, friendly, and industrially recognized.We use custom hook like react-firebase-hook to implement firebase authentication,"
+    },
+    {
+        "title": "3 What other services does firebase provide other than authentication ?",
+        "desc": "Google Firebase uses dedicated cloud-based NoSQL databases, Firestore, and a real-time database, to store information.  You can also host your web app easily on Firebase. Firebase ML comes in handy if you have a machine learning project to deploy along with your app."
+    }
+]

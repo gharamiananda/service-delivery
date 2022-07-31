@@ -1,33 +1,20 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import useServices from '../../hook/useServices';
 import Service from '../service/Service';
 
-const Services = () => {
+const Services = ({ number }) => {
 
 
-    const [services, setServices] = useState([]);
+    const [services, setServices] = useServices(number);
 
-
-
-    useEffect(() => {
-        const fetServices = async () => {
-            const res = await axios.get("service.json")
-                .catch(err => {
-                    console.log(err)
-                })
-
-            setServices(res?.data)
-        }
-
-
-        fetServices();
-    }, [])
 
 
 
 
     return (
-        <section className="services-area pt-115 pb-90">
+        <section className="services-area  pb-90">
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-xl-8 col-lg-10">
@@ -52,6 +39,10 @@ const Services = () => {
                         }
 
                     </div>
+                    {number == 3 && <div className="text-center">
+                        <Link to="/services" className="btn">View More</Link>
+                    </div>}
+
                 </div>
             </div>
         </section>
