@@ -7,7 +7,7 @@ import userimg from '../../img/logo/user.png';
 import { NavLink } from "react-router-dom";
 const Header = () => {
 
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     console.log(user);
     const logout = () => {
         signOut(auth);
